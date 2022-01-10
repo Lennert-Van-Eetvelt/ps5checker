@@ -1,6 +1,6 @@
 console.log("PS5 checker active")
 
-setTimeout(function (){main();},5000);
+setTimeout(function (){main();},15000);
 // document.onload = function (){ console.log("loadd");main();};
 
 function goToUrl(url, timeout){
