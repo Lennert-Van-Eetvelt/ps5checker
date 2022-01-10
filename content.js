@@ -1,6 +1,6 @@
 console.log("PS5 checker active")
 
-setTimeout(function (){main();},3000);
+setTimeout(function (){main();},5000);
 // document.onload = function (){ console.log("loadd");main();};
 
 function goToUrl(url, timeout){
@@ -132,7 +132,7 @@ function checkAmazonDigital(){
         console.log(ele)
         console.log(ele.innerText)
         if (ele.innerText.startsWith("Currently")) available = false;
-    }catch (E){
+    }catch (e){
         console.log(e)
     }
     if (available) found("amazon digital", urlFull)
