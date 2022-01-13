@@ -131,7 +131,7 @@ function checkCoolblueAll(number, url){
     try {
         let ele = document.getElementsByClassName("js-threshold-toggle-sticky-bar")[0].getElementsByClassName("color--unavailable")[0];
         if (ele.innerText.startsWith("Tijdelijk")) available = false;
-    }catch (E){
+    }catch (e){
         console.log(e)
     }
     if (available) found("coolblue", urlFull)
@@ -146,6 +146,12 @@ function checkAmazonDigital(){
     let urlFull = "https://www.amazon.de/-/en/dp/B08H98GVK8/";
     if (!window.location.href.startsWith(urlFull)) goToUrl(urlFull, 898); else{
     let available = true;
+    try{
+        document.getElementById("productTitle").innerText;
+    }catch (e){
+        available = false;
+        console.log("page not loaded correct")
+    }
     try {
         let ele = document.getElementById("availability").children[0];//.children[0];//.children[0];
         console.log(ele)
@@ -166,10 +172,16 @@ function checkAmazonDisc(){
     let urlFull = "https://www.amazon.de/-/en/dp/B08H93ZRK9/";
     if (!window.location.href.startsWith(urlFull)) goToUrl(urlFull, 898); else{
         let available = true;
+        try{
+            document.getElementById("productTitle").innerText;
+        }catch (e){
+            available = false;
+            console.log("page not loaded correct")
+        }
         try {
             let ele = document.getElementById("availability").children[0];//.children[0].children[0];
             if (ele.innerText.startsWith("Currently")) available = false;
-        }catch (E){
+        }catch (e){
             console.log(e)
         }
         if (available) found("amazon disc", urlFull)
@@ -183,10 +195,16 @@ function checkAmazonUkDisc(){
     let urlFull = "https://www.amazon.co.uk/PlayStation-9395003-5-Console/dp/B08H95Y452";
     if (!window.location.href.startsWith(urlFull)) goToUrl(urlFull, 898); else{
         let available = true;
+        try{
+            document.getElementById("productTitle").innerText;
+        }catch (e){
+            available = false;
+            console.log("page not loaded correct")
+        }
         try {
             let ele = document.getElementById("availability").children[0];//.children[0].children[0];
             if (ele.innerText.startsWith("Currently")) available = false;
-        }catch (E){
+        }catch (e){
             console.log(e)
         }
         if (available) found("amazon uk disc", urlFull)
@@ -200,10 +218,16 @@ function checkAmazonUkDigital(){
         let urlFull = "https://www.amazon.co.uk/PlayStation-5-Digital-Edition-Console/dp/B08H97NYGP";
         if (!window.location.href.startsWith(urlFull)) goToUrl(urlFull, 898); else{
             let available = true;
+            try{
+                document.getElementById("productTitle").innerText;
+            }catch (e){
+                available = false;
+                console.log("page not loaded correct")
+            }
             try {
                 let ele = document.getElementById("availability").children[0];//.children[0].children[0];
                 if (ele.innerText.startsWith("Currently")) available = false;
-            }catch (E){
+            }catch (e){
                 console.log(e)
             }
             if (available) found("amazon uk digital", urlFull)
@@ -217,10 +241,16 @@ function checkNedGame(){
     let urlFull = "https://www.nedgame.nl/playstation-5/playstation-5-digital-edition-bundel/3831177925/";
     if (!window.location.href.startsWith(urlFull)) goToUrl(urlFull, 898); else{
         let available = true;
+        try{
+            document.getElementById("productTitle").innerText;
+        }catch (e){
+            available = false;
+            console.log("page not loaded correct")
+        }
         try {
             let ele = document.getElementsByClassName("koopdiv")[0].children[0];//.children[0].children[0];
             if (ele.innerText.startsWith("Uitverkocht")) available = false;
-        }catch (E){
+        }catch (e){
             console.log(e)
         }
         if (available) found("nedgame", urlFull)
@@ -235,10 +265,16 @@ function checkMediamarkt(nummer, url){
     let urlFull = url;
     if (!window.location.href.startsWith(urlFull)) goToUrl(urlFull, 898); else{
         let available = true;
+        try{
+            document.getElementById("productTitle").innerText;
+        }catch (e){
+            available = false;
+            console.log("page not loaded correct")
+        }
         try {
             let ele = document.getElementsByClassName("offline-text")[0];
             if (ele.innerText.toLowerCase().startsWith("artikel tijdelijk")) available = false;
-        }catch (E){
+        }catch (e){
             console.log(e)
         }
         if (available) found("mediamarkt " + nummer, urlFull)
