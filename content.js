@@ -1,6 +1,6 @@
 console.log("PS5 checker active")
 
-setTimeout(function (){main();},5000);
+setTimeout(function (){main();},10000);
 // document.onload = function (){ console.log("loadd");main();};
 
 function goToUrl(url, timeout){
@@ -237,7 +237,7 @@ function checkMediamarkt(nummer, url){
         let available = true;
         try {
             let ele = document.getElementsByClassName("offline-text")[0];
-            if (ele.innerText.startsWith("Artikel tijdelijk")) available = false;
+            if (ele.innerText.toLowerCase().startsWith("artikel tijdelijk")) available = false;
         }catch (E){
             console.log(e)
         }
