@@ -1,6 +1,6 @@
 console.log("PS5 checker active")
 
-setTimeout(function (){main();},15000);
+setTimeout(function (){main();},5000);
 // document.onload = function (){ console.log("loadd");main();};
 
 function goToUrl(url, timeout){
@@ -32,8 +32,7 @@ function main(){
         return;
     console.log("active???", active)
     console.log("place???", place)
-    if (place >0 && place < 15) place = place;
-    else     place = 0;
+    if (!(place >0 && place < 100))    place = 0;
     switch(place){
         case 0: checkBol(); return
         case 1: checkAlternateDisc(); return
@@ -48,8 +47,16 @@ function main(){
         case 10: checkCoolblueAll(7,"https://www.coolblue.be/nl/product/894891");return;
         case 11: checkAmazonDigital();return;
         // case 12: checkAmazonDisc();return;
-        case 12: checkNedGame();return;
-        case 13: place = 0; main(); return;
+        case 12: checkAmazonUkDigital();return;
+        case 13: checkAmazonUkDisc();return;
+        case 14: checkNedGame();return;
+        case 15: checkMediamarkt(0,"https://www.mediamarkt.be/nl/product/_playstation-ps5-825-gb-extra-draadloze-controller-ps5-dualsense-1947127.html");return;
+        case 16: checkMediamarkt(1,"https://www.mediamarkt.be/nl/product/_playstation-ps5-825-gb-ps5-dualsense-cosmic-black-ratchet-clank-rift-apart-marvel-s-spiderman-miles-morales-1973158.html");return;
+        case 17: checkMediamarkt(2,"https://www.mediamarkt.be/nl/product/_playstation-ps5-825-gb-ps5-dualsense-just-dance-2021-marvel-s-spiderman-miles-morales-ps-plus-12-maand-1985184.html");return;
+        case 18: checkMediamarkt(3,"https://www.mediamarkt.be/nl/product/_playstation-ps5-digital-825-gb-draadloze-controller-ps5-dualsense-media-afstandsbediening-ps5-hd-camera-draadloze-gaming-headset-ps5-1990241.html");return;
+        case 19: checkMediamarkt(4,"https://www.mediamarkt.be/nl/product/_playstation-ps5-825-gb-dualsense-cosmic-black-draadloze-gaming-headset-ps5-pulse-3d-call-of-duty-vanguard-uk-ps-plus-12-maand-1991543.html");return;
+        case 20: checkMediamarkt(5,"https://www.mediamarkt.be/nl/product/_playstation-ps5-825-gb-draadloze-controller-ps5-dualsense-draadloze-gaming-headset-ps5-pulse-3d-zwart-fifa-22-battlefield-2042-ps-1995716.html");return;
+        case 21: place = 0; main(); return;
     }
 }
 
@@ -75,9 +82,13 @@ function checkBol(){
     let urlBase = "https://www.bol.com/be/nl/p/sony-playstation-5-console/"
     let urlFull = "https://www.bol.com/be/nl/p/sony-playstation-5-console/9300000004162282/?ruleRedirect=1&sI=playstation%205&variants="
     if (!window.location.href.startsWith(urlBase)) goToUrl(urlFull, 898); else{
-    let ele = document.getElementsByClassName("buy-block__title")[0];
-    if (!ele.innerText.startsWith("Niet")) found("bol",urlFull);
-    else console.log("not found....")
+        try {
+            let ele = document.getElementsByClassName("buy-block__title")[0];
+            if (!ele.innerText.startsWith("Niet")) found("bol", urlFull);
+            else console.log("not found....")
+        }catch (e){
+            console.log(e)
+        }
     place++;
     savePlace();
     main();}
@@ -86,9 +97,13 @@ function checkAlternateDisc(){
     console.log("checking alternate disc")
     let urlFull = "https://www.alternate.be/Sony-Interactive-Entertainment/PlayStation-5-spelconsole/html/product/1651220"
     if (!window.location.href.startsWith(urlFull)) goToUrl(urlFull, 898); else{
-    let ele = document.getElementsByClassName("d-flex justify-content-center align-items-center")[0].children[0];
-    if (!ele.innerText.startsWith("Niet")) found("alternate", urlFull);
-    else console.log("not found....")
+        try {
+            let ele = document.getElementsByClassName("d-flex justify-content-center align-items-center")[0].children[0];
+            if (!ele.innerText.startsWith("Niet")) found("alternate", urlFull);
+            else console.log("not found....")
+        }catch (e){
+            console.log(e)
+        }
     place++;
     savePlace();
     main();}
@@ -96,10 +111,14 @@ function checkAlternateDisc(){
 function checkAlternateDigital(){
     console.log("checking alternate digital")
     let urlFull = "https://www.alternate.be/Sony-Interactive-Entertainment/PlayStation-5-Digital-Edition-spelconsole/html/product/1651221"
-    if (!window.location.href.startsWith(urlFull)) goToUrl(urlFull, 898); else{   
-    let ele = document.getElementsByClassName("d-flex justify-content-center align-items-center")[0].children[0];
-    if (!ele.innerText.startsWith("Niet")) found("alternate", urlFull);
-    else console.log("not found....")
+    if (!window.location.href.startsWith(urlFull)) goToUrl(urlFull, 898); else{
+        try {
+            let ele = document.getElementsByClassName("d-flex justify-content-center align-items-center")[0].children[0];
+            if (!ele.innerText.startsWith("Niet")) found("alternate", urlFull);
+            else console.log("not found....")
+        }catch (e){
+            console.log(e)
+        }
     place++;
     savePlace();
     main();}
@@ -159,7 +178,40 @@ function checkAmazonDisc(){
         savePlace();
         main();}
 }
-
+function checkAmazonUkDisc(){
+    console.log("checking Amazon uk disc")
+    let urlFull = "https://www.amazon.co.uk/PlayStation-9395003-5-Console/dp/B08H95Y452";
+    if (!window.location.href.startsWith(urlFull)) goToUrl(urlFull, 898); else{
+        let available = true;
+        try {
+            let ele = document.getElementById("availability").children[0];//.children[0].children[0];
+            if (ele.innerText.startsWith("Currently")) available = false;
+        }catch (E){
+            console.log(e)
+        }
+        if (available) found("amazon uk disc", urlFull)
+        else console.log("not found....")
+        place++;
+        savePlace();
+        main();}
+}
+function checkAmazonUkDigital(){
+        console.log("checking Amazon uk digital")
+        let urlFull = "https://www.amazon.co.uk/PlayStation-5-Digital-Edition-Console/dp/B08H97NYGP";
+        if (!window.location.href.startsWith(urlFull)) goToUrl(urlFull, 898); else{
+            let available = true;
+            try {
+                let ele = document.getElementById("availability").children[0];//.children[0].children[0];
+                if (ele.innerText.startsWith("Currently")) available = false;
+            }catch (E){
+                console.log(e)
+            }
+            if (available) found("amazon uk digital", urlFull)
+            else console.log("not found....")
+            place++;
+            savePlace();
+            main();}
+    }
 function checkNedGame(){
     console.log("checking nedgame")
     let urlFull = "https://www.nedgame.nl/playstation-5/playstation-5-digital-edition-bundel/3831177925/";
@@ -172,6 +224,24 @@ function checkNedGame(){
             console.log(e)
         }
         if (available) found("nedgame", urlFull)
+        else console.log("not found....")
+        place++;
+        savePlace();
+        main();}
+}
+
+function checkMediamarkt(nummer, url){
+    console.log("checking mediamarkt " + nummer)
+    let urlFull = url;
+    if (!window.location.href.startsWith(urlFull)) goToUrl(urlFull, 898); else{
+        let available = true;
+        try {
+            let ele = document.getElementsByClassName("offline-text")[0];
+            if (ele.innerText.startsWith("Artikel tijdelijk")) available = false;
+        }catch (E){
+            console.log(e)
+        }
+        if (available) found("mediamarkt " + nummer, urlFull)
         else console.log("not found....")
         place++;
         savePlace();
