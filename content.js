@@ -1,6 +1,6 @@
 console.log("PS5 checker active")
 
-setTimeout(function (){main();},10000);
+setTimeout(function (){main();},8000);
 // document.onload = function (){ console.log("loadd");main();};
 
 function goToUrl(url, timeout){
@@ -39,24 +39,24 @@ function main(){
         case 2: checkAlternateDigital(); return;
         case 3: checkCoolblueAll(0,"https://www.coolblue.be/nl/product/865867");return;
         case 4: checkCoolblueAll(1,"https://www.coolblue.be/nl/product/865866");return;
-        case 5: checkCoolblueAll(2,"https://www.coolblue.be/nl/product/884830");return;
-        case 6: checkCoolblueAll(3,"https://www.coolblue.be/nl/product/873655");return;
-        case 7: checkCoolblueAll(4,"https://www.coolblue.be/nl/product/891380");return;
-        case 8: checkCoolblueAll(5,"https://www.coolblue.be/nl/product/895374");return;
-        case 9: checkCoolblueAll(6,"https://www.coolblue.be/nl/product/895975");return;
-        case 10: checkCoolblueAll(7,"https://www.coolblue.be/nl/product/894891");return;
-        case 11: checkAmazonDigital();return;
+        // case 5: checkCoolblueAll(2,"https://www.coolblue.be/nl/product/884830");return;
+        // case 6: checkCoolblueAll(3,"https://www.coolblue.be/nl/product/873655");return;
+        // case 7: checkCoolblueAll(4,"https://www.coolblue.be/nl/product/891380");return;
+        // case 8: checkCoolblueAll(5,"https://www.coolblue.be/nl/product/895374");return;
+        // case 9: checkCoolblueAll(6,"https://www.coolblue.be/nl/product/895975");return;
+        // case 10: checkCoolblueAll(7,"https://www.coolblue.be/nl/product/894891");return;
+        case 5: checkAmazonDigital();return;
         // case 12: checkAmazonDisc();return;
-        case 12: checkAmazonUkDigital();return;
-        case 13: checkAmazonUkDisc();return;
-        case 14: checkNedGame();return;
-        case 15: checkMediamarkt(0,"https://www.mediamarkt.be/nl/product/_playstation-ps5-825-gb-extra-draadloze-controller-ps5-dualsense-1947127.html");return;
-        case 16: checkMediamarkt(1,"https://www.mediamarkt.be/nl/product/_playstation-ps5-825-gb-ps5-dualsense-cosmic-black-ratchet-clank-rift-apart-marvel-s-spiderman-miles-morales-1973158.html");return;
-        case 17: checkMediamarkt(2,"https://www.mediamarkt.be/nl/product/_playstation-ps5-825-gb-ps5-dualsense-just-dance-2021-marvel-s-spiderman-miles-morales-ps-plus-12-maand-1985184.html");return;
-        case 18: checkMediamarkt(3,"https://www.mediamarkt.be/nl/product/_playstation-ps5-digital-825-gb-draadloze-controller-ps5-dualsense-media-afstandsbediening-ps5-hd-camera-draadloze-gaming-headset-ps5-1990241.html");return;
-        case 19: checkMediamarkt(4,"https://www.mediamarkt.be/nl/product/_playstation-ps5-825-gb-dualsense-cosmic-black-draadloze-gaming-headset-ps5-pulse-3d-call-of-duty-vanguard-uk-ps-plus-12-maand-1991543.html");return;
-        case 20: checkMediamarkt(5,"https://www.mediamarkt.be/nl/product/_playstation-ps5-825-gb-draadloze-controller-ps5-dualsense-draadloze-gaming-headset-ps5-pulse-3d-zwart-fifa-22-battlefield-2042-ps-1995716.html");return;
-        case 21: place = 0; main(); return;
+        case 6: checkAmazonUkDigital();return;
+        case 7: checkAmazonUkDisc();return;
+        case 8: checkNedGame();return;
+        case 9: checkMediamarkt(0,"https://www.mediamarkt.be/nl/product/_playstation-ps5-825-gb-extra-draadloze-controller-ps5-dualsense-1947127.html");return;
+        // case 16: checkMediamarkt(1,"https://www.mediamarkt.be/nl/product/_playstation-ps5-825-gb-ps5-dualsense-cosmic-black-ratchet-clank-rift-apart-marvel-s-spiderman-miles-morales-1973158.html");return;
+        // case 17: checkMediamarkt(2,"https://www.mediamarkt.be/nl/product/_playstation-ps5-825-gb-ps5-dualsense-just-dance-2021-marvel-s-spiderman-miles-morales-ps-plus-12-maand-1985184.html");return;
+        // case 18: checkMediamarkt(3,"https://www.mediamarkt.be/nl/product/_playstation-ps5-digital-825-gb-draadloze-controller-ps5-dualsense-media-afstandsbediening-ps5-hd-camera-draadloze-gaming-headset-ps5-1990241.html");return;
+        // case 19: checkMediamarkt(4,"https://www.mediamarkt.be/nl/product/_playstation-ps5-825-gb-dualsense-cosmic-black-draadloze-gaming-headset-ps5-pulse-3d-call-of-duty-vanguard-uk-ps-plus-12-maand-1991543.html");return;
+        // case 20: checkMediamarkt(5,"https://www.mediamarkt.be/nl/product/_playstation-ps5-825-gb-draadloze-controller-ps5-dualsense-draadloze-gaming-headset-ps5-pulse-3d-zwart-fifa-22-battlefield-2042-ps-1995716.html");return;
+        default: place = 0; main(); return;
     }
 }
 
