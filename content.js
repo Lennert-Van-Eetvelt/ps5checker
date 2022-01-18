@@ -1,6 +1,15 @@
-console.log("PS5 checker active")
+console.log("PS5 checker hi")
+var currentdate = new Date();
+var datetime = "Last Sync: " + currentdate.getDate() + "/"
+    + (currentdate.getMonth()+1)  + "/"
+    + currentdate.getFullYear() + " @ "
+    + currentdate.getHours() + ":"
+    + currentdate.getMinutes() + ":"
+    + currentdate.getSeconds();
+console.log(datetime)
 
-setTimeout(function (){main();},8000);
+
+setTimeout(function (){main();},12000);
 // document.onload = function (){ console.log("loadd");main();};
 
 function goToUrl(url, timeout){
@@ -27,6 +36,12 @@ function saveActive(act){    chrome.storage.sync.set({btn1: act}, function (){})
 console.log("active", active)
 console.log("active", place)
 
+function startSearchingAgain(){
+    place= 0;
+    savePlace();
+    main();
+}
+
 function main(){
     if (!active)
         return;
@@ -34,6 +49,7 @@ function main(){
     console.log("place???", place)
     if (!(place >0 && place < 100))    place = 0;
     switch(place){
+        case -1: setTimeout(function (){startSearchingAgain();},3*60*1000); return;
         case 0: checkBol(); return
         case 1: checkAlternateDisc(); return
         case 2: checkAlternateDigital(); return;
@@ -63,7 +79,9 @@ function main(){
 function found(website, url){
     place = url;
     active = false;
-    saveActive(false)
+    // saveActive(false)
+    place = -1;
+    savePlace()
     console.log("OMG I Found it ")
     sendMessage(website,url)
 }
