@@ -8,8 +8,8 @@ var datetime = "Last Sync: " + currentdate.getDate() + "/"
     + currentdate.getSeconds();
 console.log(datetime)
 
-
-setTimeout(function (){main();},12000);
+setInterval(function (){main();},8000)
+// setTimeout(function (){main();},12000);
 // document.onload = function (){ console.log("loadd");main();};
 
 function goToUrl(url, timeout){
@@ -43,6 +43,7 @@ function startSearchingAgain(){
 }
 
 function main(){
+    getActive()
     if (!active)
         return;
     console.log("active???", active)
