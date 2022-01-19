@@ -50,7 +50,7 @@ function main(){
     console.log("place???", place)
     if (!(place >0 && place < 100))    place = 0;
     switch(place){
-        case -1: setTimeout(function (){startSearchingAgain();},3*60*1000); return;
+        case 100: setTimeout(function (){startSearchingAgain();},3*60*1000); return;
         case 0: checkBol(); return
         case 1: checkAlternateDisc(); return
         case 2: checkAlternateDigital(); return;
@@ -81,7 +81,7 @@ function found(website, url){
     place = url;
     active = false;
     // saveActive(false)
-    place = -1;
+    place = 100;
     savePlace()
     console.log("OMG I Found it ")
     sendMessage(website,url)
