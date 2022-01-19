@@ -50,7 +50,7 @@ function main(){
     console.log("place???", place)
     if (!(place >0 && place < 100))    place = 0;
     switch(place){
-        case 100: setTimeout(function (){startSearchingAgain();},3*60*1000); return;
+        case 100: setTimeout(function (){startSearchingAgain();},4*60*1000); return;
         case 0: checkBol(); return
         case 1: checkAlternateDisc(); return
         case 2: checkAlternateDigital(); return;
