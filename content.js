@@ -93,7 +93,7 @@ function sendMessage(title, message){
     var url = new URL("https://api.simplepush.io/send/46XqyU/"+title+"/")
     url.searchParams.append('x',message)
     console.log(url.toString().replace("?x=", ""))
-    goToUrl(url.toString().replace("?x=", "")+"/event/Critical",0)
+    goToUrl(url.toString().replace("?x=", "")+"/event/Critical",100)
 }
 
 
