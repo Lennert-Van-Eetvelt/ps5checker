@@ -27,7 +27,7 @@ let place = 0;
 let active = false;
 getPlace();
 getActive();
-saveActive(false)
+// saveActive(false)
 function getPlace() {try {chrome.storage.sync.get(['place'], function (result) {place = result.place;});} catch (e) {}}
 function getActive() {try {chrome.storage.sync.get(['btn1'], function (result) {active = result.btn1;});} catch (e) {}}
 function savePlace(){    chrome.storage.sync.set({place: place}, function (){});}
