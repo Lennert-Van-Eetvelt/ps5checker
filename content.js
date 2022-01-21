@@ -25,13 +25,16 @@ function goToUrl(url, timeout){
 
 let place = 0;
 let active = false;
+let stock = -1;
 getPlace();
 getActive();
 // saveActive(false)
 function getPlace() {try {chrome.storage.sync.get(['place'], function (result) {place = result.place;});} catch (e) {}}
 function getActive() {try {chrome.storage.sync.get(['btn1'], function (result) {active = result.btn1;});} catch (e) {}}
+function getStock() {try {chrome.storage.sync.get(['stock'], function (result) {stock = result.stock;});} catch (e) {}}
 function savePlace(){    chrome.storage.sync.set({place: place}, function (){});}
 function saveActive(act){    chrome.storage.sync.set({btn1: act}, function (){});}
+function saveStock(){    chrome.storage.sync.set({stock: stock}, function (){});}
 
 console.log("active", active)
 console.log("active", place)
@@ -40,6 +43,15 @@ function startSearchingAgain(){
     place= 0;
     savePlace();
     main();
+}
+
+function setStock(found){
+    if (found)
+        stock = place;
+    else
+        if (stock === place)
+            stock = -1;
+    saveStock();
 }
 
 function main(){
@@ -79,9 +91,13 @@ function main(){
 }
 
 function found(website, url){
+    if (stock === place)
+        return;
     place = url;
     active = false;
     // saveActive(false)
+    stock = place;
+    saveStock()
     place = -1;
     savePlace()
     console.log("OMG I Found it ")
@@ -101,14 +117,18 @@ function checkBol(){
     console.log("checking bol")
     let urlBase = "https://www.bol.com/be/nl/p/sony-playstation-5-console/"
     let urlFull = "https://www.bol.com/be/nl/p/sony-playstation-5-console/9300000004162282/?ruleRedirect=1&sI=playstation%205&variants="
+    let fnd = false;
     if (!window.location.href.startsWith(urlBase)) goToUrl(urlFull, 898); else{
         try {
             let ele = document.getElementsByClassName("buy-block__title")[0];
-            if (!ele.innerText.startsWith("Niet")) found("bol", urlFull);
+            if (!ele.innerText.startsWith("Niet")) fnd = true;
+            
+            if (fnd) found("bol", urlFull);
             else console.log("not found....")
         }catch (e){
             console.log(e)
         }
+        setStock(fnd)
     place++;
     savePlace();
     main();}
@@ -116,14 +136,18 @@ function checkBol(){
 function checkAlternateDisc(){
     console.log("checking alternate disc")
     let urlFull = "https://www.alternate.be/Sony-Interactive-Entertainment/PlayStation-5-spelconsole/html/product/1651220"
+    let fnd= false;
     if (!window.location.href.startsWith(urlFull)) goToUrl(urlFull, 898); else{
         try {
             let ele = document.getElementsByClassName("d-flex justify-content-center align-items-center")[0].children[0];
-            if (!ele.innerText.startsWith("Niet")) found("alternate", urlFull);
+            if (!ele.innerText.startsWith("Niet")) fnd = true;
+            
+            if (fnd) found("alternate", urlFull);
             else console.log("not found....")
         }catch (e){
             console.log(e)
         }
+        setStock(fnd)
     place++;
     savePlace();
     main();}
@@ -131,14 +155,18 @@ function checkAlternateDisc(){
 function checkAlternateDigital(){
     console.log("checking alternate digital")
     let urlFull = "https://www.alternate.be/Sony-Interactive-Entertainment/PlayStation-5-Digital-Edition-spelconsole/html/product/1651221"
+    let fnd = false
     if (!window.location.href.startsWith(urlFull)) goToUrl(urlFull, 898); else{
         try {
             let ele = document.getElementsByClassName("d-flex justify-content-center align-items-center")[0].children[0];
-            if (!ele.innerText.startsWith("Niet")) found("alternate", urlFull);
+            if (!ele.innerText.startsWith("Niet")) fnd = true;
+
+            if (fnd) found("alternate", urlFull);
             else console.log("not found....")
         }catch (e){
             console.log(e)
         }
+        setStock(fnd)
     place++;
     savePlace();
     main();}
@@ -155,7 +183,9 @@ function checkCoolblueAll(number, url){
         console.log(e)
     }
     if (available) found("coolblue", urlFull)
-    else console.log("not found....")
+    else console.log("not found....");
+
+    setStock(available)
     place++;
     savePlace();
     main();}
@@ -181,7 +211,9 @@ function checkAmazonDigital(){
         console.log(e)
     }
     if (available) found("amazon digital", urlFull)
-    else console.log("not found....")
+    else console.log("not found....");
+
+        setStock(available)
     place++;
     savePlace();
     main();}
@@ -205,7 +237,9 @@ function checkAmazonDisc(){
             console.log(e)
         }
         if (available) found("amazon disc", urlFull)
-        else console.log("not found....")
+        else console.log("not found....");
+
+        setStock(available)
         place++;
         savePlace();
         main();}
@@ -228,7 +262,9 @@ function checkAmazonUkDisc(){
             console.log(e)
         }
         if (available) found("amazon uk disc", urlFull)
-        else console.log("not found....")
+        else console.log("not found....");
+
+        setStock(available)
         place++;
         savePlace();
         main();}
@@ -251,7 +287,9 @@ function checkAmazonUkDigital(){
                 console.log(e)
             }
             if (available) found("amazon uk digital", urlFull)
-            else console.log("not found....")
+            else console.log("not found....");
+
+            setStock(available)
             place++;
             savePlace();
             main();}
@@ -274,7 +312,9 @@ function checkNedGame(){
             console.log(e)
         }
         if (available) found("nedgame", urlFull)
-        else console.log("not found....")
+        else console.log("not found....");
+
+        setStock(available)
         place++;
         savePlace();
         main();}
@@ -298,7 +338,9 @@ function checkMediamarkt(nummer, url){
             console.log(e)
         }
         if (available) found("mediamarkt " + nummer, urlFull)
-        else console.log("not found....")
+        else console.log("not found....");
+
+        setStock(available)
         place++;
         savePlace();
         main();}
