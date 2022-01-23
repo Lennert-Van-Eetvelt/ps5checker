@@ -94,7 +94,7 @@ function main(){
 function found(website, url){
     if (stock === place)
         return;
-    place = url;
+    // place = url;
     active = false;
     // saveActive(false)
     stock = place;
